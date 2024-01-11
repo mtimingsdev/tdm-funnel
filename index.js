@@ -9,6 +9,11 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public');
 app.use(express.static('public'));
 
+// if app is hosted from https://example.com
+if (("standalone" in window.navigator) || window.navigator.standalone ) {
+  window.open('http://example.com/page', '_blank');
+}
+
 
 const open = require('open');
 
@@ -17,7 +22,7 @@ open('http://tdmfunnel.com');
 app.get('/', function(request, response) {
   var env = process.env.APP_ENV;
   if (env == 'staging') {
-    var envName = 'staging'
+    var envName = 'staging' 
   } else if (env == 'production') {
     var envName = 'production'
   } else {
