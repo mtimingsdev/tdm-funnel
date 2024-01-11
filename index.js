@@ -3,17 +3,18 @@ var app = express();
 
 require('dotenv').config()
 
-app.set('port', (process.env.PORT || 3412));
+app.set('port', (process.env.PORT || 3462));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public');
 app.use(express.static('public'));
 
-// if app is hosted from https://example.com
-if (("standalone" in window.navigator) || window.navigator.standalone ) {
-  window.open('http://example.com/page', '_blank');
-}
 
+
+const spawn = require('child_process').spawn;
+// open default browser
+spawn('open', ['http://tdmfunnel.com']);
+console.log('running on http://tdmfunnel.com');
 
 const open = require('open');
 
